@@ -28,6 +28,118 @@
   color: #61dafb;
 }
 
+.board-container {
+  background-color: lightblue;
+  padding: 20px;
+}
+
+.board {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column-container {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.column {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.btn-create-task{
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.task-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.task-form {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.task-form h2 {
+  margin-top: 0;
+}
+
+.task-form .form-group {
+  margin-bottom: 10px;
+}
+
+.task-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.task-form input,
+.task-form textarea,
+.task-form select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.task-form input:focus,
+.task-form textarea:focus,
+.task-form select:focus {
+  outline: none;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5),
+              0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.task-form .form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.task-form .form-buttons button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.task-form .form-buttons .btn-submit {
+  background-color: #4CAF50;
+  color: white;
+  margin-right: 10px;
+}
+
+.task-form .form-buttons .btn-cancel {
+  background-color: #f44336;
+  color: white;
+}
+
+.task {
+  border: 1px solid lightsalmon;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
