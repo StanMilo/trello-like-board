@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
 
-const TaskForm = ({ task, onSubmit, handleCloseModal, showModal, taskCounter }) => {
+const TaskForm = ({ task, onSubmit, handleCloseModal, showModal, editTask, taskCount }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("Todo");
   const [assignedUser, setAssignedUser] = useState("");
   
-
+console.log(taskCount, 'TASK KAUNT')
   useEffect(() => {
     if (task) {
       setTitle(task.title);
       setDescription(task.description);
       setStatus(task.status);
       setAssignedUser(task.assignedUser);
+    } else if (editTask) {
+      setTitle(editTask.title);
+      setDescription(editTask.description);
+      setStatus(editTask.status);
+      setAssignedUser(editTask.assignedUser);
     }
-  }, [task]);
+  }, [task, editTask]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,7 +29,11 @@ const TaskForm = ({ task, onSubmit, handleCloseModal, showModal, taskCounter }) 
       status,
       assignedUser,
     };
-    onSubmit(newTask);
+    if (editTask) {
+      onSubmit(newTask, editTask.id);
+    } else {
+      onSubmit(newTask);
+    }
     handleCloseModal();
   };
 
@@ -39,7 +48,6 @@ const TaskForm = ({ task, onSubmit, handleCloseModal, showModal, taskCounter }) 
           <div className="task-form">
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                Task: {taskCounter}
                 <label htmlFor="title">Title:</label>
                 <input
                   type="text"

@@ -12,7 +12,7 @@ const Board = () => {
       const newTasks = [...tasks];
       const taskIndex = tasks.findIndex((t) => t.id === editTask.id);
       if (taskIndex !== -1) {
-        newTasks[taskIndex] = task;
+        newTasks[taskIndex] = {...newTasks[taskIndex], ...task};
         setTasks(newTasks);
         setEditTask(null);
       }
@@ -56,8 +56,6 @@ const Board = () => {
     }
   };
 
-  console.log(tasks, "TASK");
-
   return (
     <div className="board-container">
       <div className="board">
@@ -66,14 +64,15 @@ const Board = () => {
         </button>
         <div className="column-container">
           <div className="column">
-            <h2>Todo</h2>
+            <h3>Todo</h3>
             {tasks
               .filter((task) => task.status === "Todo")
               .map((task) => (
                 <div key={task.id} className="task">
-                  Task: {task.taskCounter}
-                  <h3>{task.title}</h3>
+                  Task: {task.id}
+                  <h4>{task.title}</h4>
                   <p>{task.description}</p>
+                  <div className="btn-container">
                   <button
                     onClick={() => moveTask(task.id, "In Progress")}
                     className="btn-move"
@@ -82,18 +81,19 @@ const Board = () => {
                   </button>
                   <button onClick={() => handleEditTask(task.id)}>Edit</button>
                 </div>
+                </div>
               ))}
           </div>
         </div>
         <div className="column-container">
           <div className="column">
-            <h2>In Progress</h2>
+            <h3>In Progress</h3>
             {tasks
               .filter((task) => task.status === "In Progress")
-              .map((task) => (
+              .map((task, index) => (
                 <div key={task.id} className="task">
-                  Task: {task.taskCounter}
-                  <h3>{task.title}</h3>
+                  Task: {task.id}
+                  <h4>{task.title}</h4>
                   <p>{task.description}</p>
                   <button
                     onClick={() => moveTask(task.id, "Done")}
@@ -108,13 +108,13 @@ const Board = () => {
         </div>
         <div className="column-container">
           <div className="column">
-            <h2>Done</h2>
+            <h3>Done</h3>
             {tasks
               .filter((task) => task.status === "Done")
               .map((task) => (
                 <div key={task.id} className="task">
-                  Task: {task.taskCounter}
-                  <h3>{task.title}</h3>
+                  Task: {task.id}
+                  <h4>{task.title}</h4>
                   <p>{task.description}</p>
                 </div>
               ))}
@@ -125,7 +125,8 @@ const Board = () => {
             handleCloseModal={handleCloseModal}
             handleCreateTask={handleCreateTask}
             onSubmit={handleFormSubmit}
-            taskCounter={taskCounter}
+            taskCount={taskCounter}
+            editTask={editTask}
           />
         )}
       </div>

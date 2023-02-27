@@ -5,7 +5,7 @@ import Board from './components/Board';
 function App() {
   return (
     <div className="App">
-      Trello like board
+      <h2>Trello like board</h2>
       <Board />
     </div>
   );
